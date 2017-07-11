@@ -13,7 +13,7 @@ $ npm install --save re-component
 Let's try to separate the concerns: mainly we have this logic and view.
 ```
 // index.js
-import component from 'component';
+import component from 're-component';
 import MyComponentLogic from './MyComponentLogic';
 import MyComponentTemplate from './MyComponentTemplate.jsx';
 import './MyComponentStyles.css';
