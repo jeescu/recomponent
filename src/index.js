@@ -1,12 +1,12 @@
 /* eslint-disable no-param-reassign */
-function component({ logic = class { }, template = null, styles = {} }) {
-  const Logic = logic;
-  const Template = template;
+function component({ logic, template, styles }) {
+  if (!logic) throw new Error('logic is not defined');
+  if (!template) throw new Error('template is not defined');
 
-  Logic.prototype.render = (function () {
-    return Template.bind(this)({ ...this.props, ...styles });
+  logic.prototype.render = (function () {
+    return template.bind(this)({ ...this.props, ...styles });
   });
-  return Logic;
+  return logic;
 }
 
 export default component;
