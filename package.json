@@ -1,6 +1,6 @@
 {
   "name": "re-component",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Component structure redefined",
   "main": "./dist/index.js",
   "scripts": {
