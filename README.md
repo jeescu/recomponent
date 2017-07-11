@@ -4,8 +4,6 @@ I know this one.
 
 An overcooked **Scrambled Egg with Onions, Pepper and Salt**.
 
-![Screenshot](http://i.imgur.com/6wPeJhG.jpg)
-
 ### Usage
 Let's try to separate the concerns: mainly we have this logic and view.
 ```
