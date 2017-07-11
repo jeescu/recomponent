@@ -4,6 +4,11 @@ I know this one.
 
 An overcooked **Scrambled Egg with Onions, Pepper and Salt**.
 
+### Install
+```
+$ npm install --save re-component
+```
+
 ### Usage
 Let's try to separate the concerns: mainly we have this logic and view.
 ```

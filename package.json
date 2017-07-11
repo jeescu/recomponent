@@ -1,5 +1,5 @@
 {
-  "name": "react-component",
+  "name": "re-component",
   "version": "0.0.1",
   "description": "Component structure redefined",
   "main": "./dist/index.js",
