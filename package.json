@@ -1,0 +1,46 @@
+{
+  "name": "react-component",
+  "version": "0.0.0",
+  "description": "Component structure redefined",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "npm test",
+    "lint": "eslint src test",
+    "build": "babel src --out-dir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jeescu/react-component.git"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "react",
+    "component",
+    "soc"
+  ],
+  "author": "John Edward Escuyos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeescu/react-component/issues"
+  },
+  "homepage": "https://github.com/jeescu/react-component#readme",
+  "devDependencies": {
+    "babel-cli": "6.22.2",
+    "babel-core": "6.21.0",
+    "babel-loader": "6.2.10",
+    "babel-preset-es2015": "6.22.0",
+    "babel-preset-react": "6.22.0",
+    "babel-preset-stage-1": "6.22.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.2",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.1.0"
+  },
+  "dependencies": {
+    "react": "^15.6.1"
+  }
+}
