@@ -1,8 +1,8 @@
 
-# Component
-I know this one.
+# Re-Component
+> React components redefined.
 
-An overcooked **Scrambled Egg with Onions, Pepper and Salt**.
+This module separates component view render and logic while preserving its context, allowing to create new component model structure similar to other frontend frameworks.
 
 ### Install
 ```
