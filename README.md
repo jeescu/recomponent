@@ -1,8 +1,8 @@
 
 # Re-Component
-> React components redefined.
+> Writing react components redefined.
 
-This module separates component view render and logic while preserving its context, allowing to create new component model structure similar to other frontend frameworks.
+This module separates component view render and logic while preserving its context, allowing to create new component model structure.
 
 ### Install
 ```
@@ -10,13 +10,13 @@ $ npm install --save re-component
 ```
 
 ### Component Restructure
-Ok. Use separation of concern, not really. I just want to feel it like it should be!
+Ok. Use separation of concern, not really. We just want to feel it like it should be!
 ```
 ├── views
 │   ├── MyComponent                 # Your awesome component.
 │   │   ├── index.js                # Entry point  for your component as a whole
 │   │   ├── MyComponentLogic.js     # Your logic here.
-│   │   ├── MyComponentTemplate.jsx # Your template here.
+│   │   ├── MyComponentTemplate.js  # Your template here.
 │   │   └── MyComponentStyles.css   # Your css
 ```
 ### Usage
