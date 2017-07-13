@@ -9,10 +9,20 @@ This module separates component view render and logic while preserving its conte
 $ npm install --save re-component
 ```
 
-### Usage
-Let's try to separate the concerns: mainly we have this logic and view.
+### Component Restructure
+Ok. Use separation of concern, not really. I just want to feel it like it should be!
 ```
-// index.js
+├── views
+│   ├── MyComponent                 # Your awesome component.
+│   │   ├── index.js                # Entry point  for your component as a whole
+│   │   ├── MyComponentLogic.js     # Your logic here.
+│   │   ├── MyComponentTemplate.jsx # Your template here.
+│   │   └── MyComponentStyles.css   # Your css
+```
+### Usage
+Let's try to separate the concerns. Mainly we have this logic and view.
+#### `MyComponent/index.js`
+```
 import component from 're-component';
 import MyComponentLogic from './MyComponentLogic';
 import MyComponentTemplate from './MyComponentTemplate.jsx';
@@ -31,24 +41,35 @@ export default component({
 });
 ```
 
-### Component Restructure
-Ok. Use separation of concern, not really. I just want to feel it like it should be!
+#### `MyComponent/MyComponentLogic.js`
 ```
-├── views
-│   ├── MyComponent                 # Your awesome component.
-│   │   ├── index.js                # Entry point  for your component as a whole
-│   │   ├── MyComponentLogic.js     # Your logic here.
-│   │   ├── MyComponentTemplate.jsx # Your template here.
-│   │   └── MyComponentStyles.css   # Your css
+import { Component } from 'react';
+
+class MyComponentLogic extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  // `render()` method is not necessary, we can put render view to a separate file.
+}
 ```
 
-#### Rules on creating each files
+#### `MyComponent/MyComponentTemplate.js`
+```
+import React from 'react';
+
+// add your view helpers here.
+
+export default function (props) { // Your component view
+  return (<div></div>)
+};
+```
+
+### Rules on creating each files
 Not really. But it's simple.
-1. You can remove your `render` method in your logic. This can make it for you.
+1. You can remove your `render` method in your logic.
 2. Heard about `arrow functions` are already bound to its scope? but we want our react templates to still access it's own context (`this`) like we normally do. Yes, I want you to use `normal function`
     ```
-    import React from 'react';
-
     export default function (props) { // please do
       // this - you'll get everything from the logic
       // props - ah normal props, but you can get it also from the context.
