@@ -1,27 +1,31 @@
-
 # Re-Component
-> Writing react components redefined.
 
-This module separates component view render and logic while preserving its context, allowing to create new component model structure.
+Re-Component separates component view and logic while preserving its context. It creates a new way of structuring our components and allows us to keep our component clean and layered.
 
 ### Install
+
 ```
 $ npm install --save re-component
 ```
 
-### Component Restructure
-Ok. Use separation of concern, not really. We just want to feel it like it should be!
+### Component restructure
+
+Separate the view from logic. Create \`index.js\` as entry point of your whole component.
+
 ```
-├── views
-│   ├── MyComponent                 # Your awesome component.
-│   │   ├── index.js                # Entry point  for your component as a whole
-│   │   ├── MyComponentLogic.js     # Your logic here.
-│   │   ├── MyComponentTemplate.js  # Your template here.
-│   │   └── MyComponentStyles.css   # Your css
+├── MyClassComponent            # Your awesome component.
+│   ├── index.js                # Entry point  for your component as a whole
+│   ├── MyComponentLogic.js     # Your logic here.
+│   ├── MyComponentTemplate.js  # Your template here.
+│   └── MyComponentStyles.css   # Your css
 ```
+
 ### Usage
+
 Let's try to separate the concerns. Mainly we have this logic and view.
+
 #### `MyComponent/index.js`
+
 ```
 import component from 're-component';
 import MyComponentLogic from './MyComponentLogic';
@@ -42,19 +46,19 @@ export default component({
 ```
 
 #### `MyComponent/MyComponentLogic.js`
-```
-import { Component } from 'react';
 
-class MyComponentLogic extends Component {
-  constructor(props) {
-    super(props);
-  }
+    import { Component } from 'react';
 
-  // `render()` method is not necessary, we can put render view to a separate file.
-}
-```
+    class MyComponentLogic extends Component {
+      constructor(props) {
+        super(props);
+      }
+
+      // `render()` method is not necessary, we can put render view to a separate file.
+    }
 
 #### `MyComponent/MyComponentTemplate.js`
+
 ```
 import React from 'react';
 
@@ -66,15 +70,18 @@ export default function (props) { // Your component view
 ```
 
 ### Rules on creating each files
-Not really. But it's simple.
-1. You can remove your `render` method in your logic.
-2. Heard about `arrow functions` are already bound to its scope? but we want our react templates to still access it's own context (`this`) like we normally do. Yes, I want you to use `normal function`
-    ```
+
+Not really. But it's simple.  
+1. You can remove your `render` method in your logic.  
+2. Heard about `arrow functions` are already bound to its scope? but we want our react templates to still access it's own context \(`this`\) like we normally do. Yes, I want you to use `normal function`
+
+```
     export default function (props) { // please do
       // this - you'll get everything from the logic
       // props - ah normal props, but you can get it also from the context.
       return (<div></div>)
     };
-    ```
+```
 
 This idea has issues. Let me know what you think.
+
