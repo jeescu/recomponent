@@ -2,22 +2,10 @@
 
 Re-Component separates component view and logic while preserving its context. It creates a new way of structuring our components and allows us to keep our component clean and layered.
 
-### Install
+### Installation
 
 ```
-$ npm install --save re-component
-```
-
-### Component restructure
-
-Separate the view from logic. Create \`index.js\` as entry point of your whole component.
-
-```
-├── MyClassComponent            # Your awesome component.
-│   ├── index.js                # Entry point  for your component as a whole
-│   ├── MyComponentLogic.js     # Your logic here.
-│   ├── MyComponentTemplate.js  # Your template here.
-│   └── MyComponentStyles.css   # Your css
+npm install --save re-component
 ```
 
 ### Usage
@@ -29,19 +17,13 @@ Let's try to separate the concerns. Mainly we have this logic and view.
 ```
 import component from 're-component';
 import MyComponentLogic from './MyComponentLogic';
-import MyComponentTemplate from './MyComponentTemplate.jsx';
+import MyComponentTemplate from './MyComponentTemplate';
 import './MyComponentStyles.css';
-
-// no, I want you to create it in css not here. Ok fine.
-myComponentCustomStyles = {
-  padding: 0;
-  marginTop: '10px';  
-}
 
 export default component({
   logic: MyComponentLogic,
   template: MyComponentTemplate,
-  styles: MyComponentCustomStyles, // oh you want some custom styles ?
+  styles: MyComponentCustomStyles
 });
 ```
 
