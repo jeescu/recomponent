@@ -75,7 +75,6 @@ By using the library, we will end up restructuring our component in different wa
 ```
 
 ### Rules
-Follow th
 1. If your component is *class-based*, you can remove your `render` method in your logic. Also, there is no point on using ReComponent on dumb components. But if you really like to, you can still declare it without the `logic`. 
 2. Heard about `arrow functions` are already bound to its scope? but we want our react templates to still access it's own context (`this`) like we normally do. Yes, I want you to use `normal function`
   ```js
