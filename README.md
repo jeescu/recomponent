@@ -4,17 +4,17 @@ Re-Component separates component view and logic while preserving its context. It
 
 ### Installation
 
-```
+```bash
 npm install --save re-component
 ```
 
 ### Usage
 
-Let's try to separate the concerns. Mainly we have this logic and view.
+Create an `index.js` file under your component folder. Let's try to separate the concerns. Import your logic, view and css into this file and wrap them using `recomponent.`
 
-#### `MyComponent/index.js`
+#### Example
 
-```
+```js
 import component from 're-component';
 import MyComponentLogic from './MyComponentLogic';
 import MyComponentTemplate from './MyComponentTemplate';
@@ -27,29 +27,12 @@ export default component({
 });
 ```
 
-#### `MyComponent/MyComponentLogic.js`
+#### Documentation
 
-    import { Component } from 'react';
+* \[Structure\]\(\)
+* \[Component\]\(\)
 
-    class MyComponentLogic extends Component {
-      constructor(props) {
-        super(props);
-      }
+#### License
 
-      // `render()` method is not necessary, we can put render view to a separate file.
-    }
-
-#### `MyComponent/MyComponentTemplate.js`
-
-```
-import React from 'react';
-
-// add your view helpers here.
-
-export default function (props) { // Your component view
-  return (<div></div>)
-};
-```
-
-
+MIT
 

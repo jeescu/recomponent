@@ -2,5 +2,7 @@
 
 * [Read Me](README.md)
 * [Structure](structure.md)
-* [Rules](rules.md)
+  * [Rules](structure/rules.md)
+* [Component](component.md)
+  * Store
 
