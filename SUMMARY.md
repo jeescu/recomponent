@@ -2,5 +2,5 @@
 
 * [Read Me](README.md)
 * [Structure](structure.md)
-* Rules
+* [Rules](rules.md)
 
