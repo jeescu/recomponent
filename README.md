@@ -29,8 +29,8 @@ export default component({
 
 #### Documentation
 
-* \[Structure\]\(\)
-* \[Component\]\(\)
+* \[Structure\]\(https://jeescu.gitbooks.io/re-component/content/structure.html\)
+* \[Component\]\(https://jeescu.gitbooks.io/re-component/content/component.html\)
 
 #### License
 
