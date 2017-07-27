@@ -1,5 +1,6 @@
 # recomponent
 [![build status](https://img.shields.io/travis/jeescu/recomponent/master.svg?style=flat-square)](https://travis-ci.org/reactjs/recomponent)
+[![bitHound](https://img.shields.io/bithound/code/github/jeescu/recomponent.svg?style=flat-square)](https://www.bithound.io/github/jeescu/recomponent)
 [![npm downloads](https://img.shields.io/npm/dm/recomponent.svg?style=flat-square)](https://www.npmjs.com/package/recomponent)
 [![npm version](https://img.shields.io/npm/v/recomponent.svg?style=flat-square)](https://www.npmjs.com/package/recomponent)
 
