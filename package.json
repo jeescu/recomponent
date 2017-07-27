@@ -1,6 +1,6 @@
 {
   "name": "recomponent",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Writing react components redefined",
   "main": "./dist/index.js",
   "scripts": {
