@@ -15,7 +15,7 @@ function component({ logic, template, styles, store = {} }) {
     }
 
     logic.prototype.render = (function () {
-      return template.bind(this)({ ...this.props, ...styles });
+      return template.bind(this)({ ...this.props, ...{ styles } });
     });
   } else {
     template.prototype.store = store;
