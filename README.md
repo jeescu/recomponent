@@ -1,8 +1,11 @@
-# ReComponent
+# recomponent
+[![build status](https://img.shields.io/travis/jeescu/recomponent/master.svg?style=flat-square)](https://travis-ci.org/reactjs/recomponent)
+[![npm downloads](https://img.shields.io/npm/dm/recomponent.svg?style=flat-square)](https://www.npmjs.com/package/recomponent)
+[![npm version](https://img.shields.io/npm/v/recomponent.svg?style=flat-square)](https://www.npmjs.com/package/recomponent)
 
 > Writing react components redefined.
 
-ReComponent separates component view and logic while preserving its context. It creates a new way of structuring the components and allows us to keep our component clean and layered.
+**recomponent** separates component view and logic while preserving its context. It creates a new way of structuring the components and allows us to keep our component clean and layered.
 
 ### Installation
 
@@ -46,7 +49,7 @@ Wraps your logic, view, store and styles in a single whole component.
 ```
 
 ### Store
-ReComponent provides optional store from your component. This store is just like a state of your component. The reason why it's separated aside from using component's state itself, because we might likely to have our own stored data that has its own purpose. 
+**recomponent** provides optional store from your component. This store is just like a state of your component. The reason why it's separated aside from using component's state itself, because we might likely to have our own stored data that has its own purpose. 
 
 Use this as custom store for your specific component. Pass the store reference via `prop` to use on child components.
 
@@ -67,15 +70,15 @@ Update store and forces the component to update.
 ## Structure
 By using the library, we will end up restructuring our component in different way. If our component is *class-based*, the logic and view (`render`) is separated. Thus, it's even more clean than before.
 ```
-├── MyComponent                 # Your component.
-│   ├── index.js                # Entry point for your component as a whole.
-│   ├── MyComponentLogic.js     # Your logic.
-│   ├── MyComponentTemplate.js  # Your template.
-│   └── MyComponentStyles.css   # Your css
+├── MyComponent          # Your component.
+│   ├── index.js         # Main entry point. You can do `recomponent` init here.
+│   ├── MyComponent.js   # Your logic. You can also do `recomponent` here.
+│   ├── MyComponent.jsx  # Your template. File ext. is optional (change the filename if using `.js`)
+│   └── MyComponent.css  # Your css
 ```
 
 ### Rules
-1. If your component is *class-based*, you can remove your `render` method in your logic. Also, there is no point on using ReComponent on dumb components. But if you really like to, you can still declare it without the `logic`. 
+1. If your component is *class-based*, you can remove your `render` method in your logic. Also, there is no point on using **recomponent** on dumb components. But if you really like to, you can still declare it without the `logic`. 
 2. Heard about `arrow functions` are already bound to its scope? but we want our react templates to still access it's own context (`this`) like we normally do. Yes, I want you to use `normal function`
   ```js
   export default function (props) { // please do
