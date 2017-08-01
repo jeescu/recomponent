@@ -22,9 +22,9 @@ Create an `index.js` file under your component folder. Let's try to separate the
 
 ```js
 import component from 'recomponent';
-import MyComponentLogic from './MyComponentLogic';
-import MyComponentTemplate from './MyComponentTemplate';
-import './MyComponentStyles.css';
+import MyComponentLogic from './MyComponent.js';
+import MyComponentTemplate from './MyComponent.jsx';
+import './MyComponent.css';
 
 export default component({
   logic: MyComponentLogic,
@@ -50,11 +50,11 @@ Wraps your logic, view, store and styles in a single whole component.
 ```
 
 ### Store
-**recomponent** provides optional store from your component. This store is just like a state of your component. The reason why it's separated aside from using component's state itself, because we might likely to have our own stored data that has its own purpose. 
+**recomponent** provides optional store from your component. This store is just like a state of your component. The reason why it's separated aside from using component's state itself, because you might likely to have your own stored data provider that has its own purpose. 
 
-Use this as custom store for your specific component. Pass the store reference via `prop` to use on child components.
+Use this as custom store for your specific component. If child components are also wrapped with **recomponent**, they can directly access the store from their context (`this.store` or `context.store` for dumb components).
 
-You can use it by adding `store` in component declaration:
+You can add store by adding `store` key in declaration:
 ```js
 export default component({
   ...
@@ -63,7 +63,7 @@ export default component({
 ```
 
 #### `this.store`
-Store values from the `component` it was defined.
+Stored data from the `component` it was defined.
 
 #### `this.setStore({ key: value })`
 Update store and forces the component to update.
