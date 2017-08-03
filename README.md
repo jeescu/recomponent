@@ -19,7 +19,7 @@ npm install --save recomponent
 Create an `index.js` file under your component folder. Let's try to separate the concerns. Import your logic, view and css into this file and wrap them using `component.`
 
 ### Example
-
+Check `test` folder for additional examples.
 ```js
 import component from 'recomponent';
 import MyComponentLogic from './MyComponent.js';
@@ -82,6 +82,7 @@ By using the library, we will end up restructuring our component in different wa
 1. If your component is *class-based*, you can remove your `render` method in your logic. Also, there is no point on using **recomponent** on dumb components. But if you really like to, you can still declare it without the `logic`. 
 2. Heard about `arrow functions` are already bound to its scope? but we want our react templates to still access it's own context (`this`) like we normally do. Yes, I want you to use `normal function`
   ```js
+  // MyComponent.jsx
   export default function (props) { // please do
     // this - you'll get everything from the logic
     // props - ah normal props, but you can get it also from the context.

@@ -14,10 +14,14 @@ function component({ logic, template, styles, store }) {
       // inject store
       logic.prototype.store = store;
       logic.prototype.setStore = (function (obj = {}) {
-        Object.keys(obj).forEach((key) => {
-          this.store[key] = obj[key];
+        const stateKeys = Object.keys(obj);
+
+        if (stateKeys.length > 0) {
+          Object.keys(obj).forEach((key) => {
+            if (typeof this.store[key] !== 'undefined') this.store[key] = obj[key];
+          });
           this.forceUpdate();
-        });
+        }
       });
       // set store context for children
       logic.childContextTypes = storeContextTypes;
@@ -36,7 +40,7 @@ function component({ logic, template, styles, store }) {
         if (this.context.store) {
           this.store = this.context.store;
           this.setStore = this.context.setStore;
-          if (selfWillMount) selfWillMount();
+          if (selfWillMount) selfWillMount.call(this);
         }
       });
     }
