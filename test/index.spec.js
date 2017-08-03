@@ -1,40 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { mount } from 'enzyme';
 import component from '../src';
 
-class MyComponentLogic extends Component {
-  constructor(props) {
-    super(props);
-    this.status = 'INIT';
-    this.state = {
-      title: 'recomponent',
-    };
+import MyComponentLogic from './MyComponent/MyComponent';
+import MyComponentTemplate from './MyComponent/MyComponent.jsx';
 
-    this.renderCount = 0;
-  }
-
-  componentWillMount() {
-    this.status = 'WILL_MOUNT';
-  }
-
-  componentDidMount() {
-    this.status = 'MOUNTED';
-  }
-}
-
-/* eslint-disable react/prop-types */
-const MyComponentTemplate = function (props = {}) {
-  const hasContext = this;
-  if (hasContext) this.renderCount += 1;
-  if (props.styles) this.propStyles = props.styles;
-
-  return (<div>
-    <h3>Hello Template</h3>
-    <p>{hasContext && this.state.title}</p>
-    <span>{props.elementProp}</span>
-    <button id="set-store" onClick={() => this.setStore({ user: { name: 'Jeff' } })} />
-  </div>);
-};
+import MyChildComponent from './MyChildComponent/';
 
 const MyStyles = {
   height: '15px',
@@ -42,6 +14,11 @@ const MyStyles = {
 
 const MyStore = {
   user: { name: 'John' },
+};
+
+const childContextTypes = {
+  store: PropTypes.object,
+  setStore: PropTypes.func,
 };
 
 describe('re-component', () => {
@@ -75,7 +52,7 @@ describe('re-component', () => {
 
     const wrapper = mount(<ReComponent />);
     expect(wrapper.length).toEqual(1);
-    expect(wrapper.find('p').text()).toEqual('recomponent');
+    expect(wrapper.find('#pc-sub-heading').text()).toEqual('recomponent');
   });
 
   it('should throw error for undefined template', () => {
@@ -105,7 +82,7 @@ describe('re-component', () => {
     expect(wrapper.getNode().store).toEqual({ user: { name: 'John' } });
     expect(wrapper.getNode().setStore).toBeDefined();
     // set store
-    wrapper.find('#set-store').simulate('click');
+    wrapper.find('#pc-set-store').simulate('click');
     expect(wrapper.getNode().store).toEqual({ user: { name: 'Jeff' } });
   });
 
@@ -131,7 +108,7 @@ describe('re-component', () => {
     const wrapper = mount(<ReComponent />);
     expect(wrapper.getNode().renderCount).toEqual(1);
 
-    wrapper.find('#set-store').simulate('click');
+    wrapper.find('#pc-set-store').simulate('click');
     expect(wrapper.getNode().renderCount).toEqual(2);
   });
 
@@ -143,5 +120,59 @@ describe('re-component', () => {
 
     const wrapper = mount(<ReComponent elementProp="Hello Component!" />);
     expect(wrapper.find('span').text()).toEqual('Hello Component!');
+  });
+
+  it('should be able to access store from child component', () => {
+    const store = { name: 'With Child' };
+    const ReComponent = component({
+      logic: MyComponentLogic,
+      template: MyComponentTemplate,
+      store,
+    });
+
+    const wrapper = mount(<ReComponent />, { options: { childContextTypes } });
+    const childWrapper = wrapper.find(MyChildComponent);
+
+    expect(wrapper.find('#cc-sub-heading').text()).toEqual('With Child');
+    expect(childWrapper.getNode().store).toEqual(store);
+    expect(typeof childWrapper.getNode().setStore).toBeDefined();
+  });
+
+  it('should update store when child component triggered store', () => {
+    const store = { name: 'With Child' };
+    const expectedStore = { name: 'Child Update' };
+    const ReComponent = component({
+      logic: MyComponentLogic,
+      template: MyComponentTemplate,
+      store,
+    });
+
+    const wrapper = mount(<ReComponent />, { options: { childContextTypes } });
+    const childWrapper = wrapper.find(MyChildComponent);
+
+    wrapper.find('#cc-set-store').simulate('click');
+    expect(childWrapper.getNode().renderCount).toEqual(2);
+
+    expect(wrapper.getNode().store).toEqual(expectedStore);
+    expect(childWrapper.getNode().store).toEqual(expectedStore);
+    expect(wrapper.find('#cc-sub-heading').text()).toEqual('Child Update');
+  });
+
+  it('should not patch new state in store when using setStore if key is not defined', () => {
+    const store = { name: 'With Child' };
+    const ReComponent = component({
+      logic: MyComponentLogic,
+      template: MyComponentTemplate,
+      store,
+    });
+
+    const wrapper = mount(<ReComponent />, { options: { childContextTypes } });
+    const childWrapper = wrapper.find(MyChildComponent);
+
+    wrapper.find('#cc-set-store-patch').simulate('click');
+
+    expect(wrapper.getNode().store).toEqual(store);
+    expect(wrapper.getNode().store.unknown).toBeFalsy();
+    expect(childWrapper.getNode().store).toEqual(store);
   });
 });
